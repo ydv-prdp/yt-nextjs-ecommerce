@@ -22,17 +22,21 @@ import { z } from 'zod'
 import { FaRegEyeSlash } from 'react-icons/fa'
 import { FaRegEye } from 'react-icons/fa'
 import Link from 'next/link'
-import { WEBSITE_REGISTER, WEBSITE_RESETPASSWORD } from '@/routes/WebsiteRoute'
+import { USER_DASHBOARD, WEBSITE_REGISTER, WEBSITE_RESETPASSWORD } from '@/routes/WebsiteRoute'
 import axios from 'axios'
 import { showToast } from '@/lib/showToast'
 import OTPVerification from '@/components/Application/OTPVerification'
 import { useDispatch } from 'react-redux'
 import { login } from '@/store/reducer/authReducer'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { ADMIN_DASHBOARD } from '@/routes/AdminPanelRoute'
 
 
 const LoginPage = () => {
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
+    const searchParams = useSearchParams()
+    const router = useRouter()
     const [otpVerificationLoading, setotpVerificationLoading] = useState(false)
     const [isTypePassword, setIsTypePassword] = useState(true)
     const [otpEmail, setOtpEmail] = useState()
@@ -70,7 +74,6 @@ const LoginPage = () => {
     const handleOTPVerification = async(values)=>{
          try {
             setotpVerificationLoading(true)
-            console.log(values)
             const { data: otpResponse } = await axios.post('/api/auth/verify-otp', values)
             if (!otpResponse.success) {
                 throw new Error(otpResponse.message)
@@ -78,6 +81,13 @@ const LoginPage = () => {
             setOtpEmail('')
             showToast('success', otpResponse.message)
             dispatch(login(otpResponse.data))
+            if (searchParams.has('callback')){
+                router.push(searchParams.get('callback'))
+            }
+            else{
+                otpResponse.data.role === 'admin' ? router.push(ADMIN_DASHBOARD) : router.push(USER_DASHBOARD)
+            }
+
         } catch (error) {
             showToast('error', error.message)
         }

@@ -1,8 +1,7 @@
+'use client'
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
-    SidebarGroup,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
@@ -10,6 +9,7 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
+    useSidebar,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 import logoBlack from '@/public/assets/images/logo-black.png'
@@ -22,8 +22,9 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import Link from "next/link"
 import { LuChevronRight } from "react-icons/lu"
 const AppSidebar = () => {
+    const {toggleSidebar} = useSidebar()
     return (
-        <Sidebar>
+        <Sidebar className={""}>
             <SidebarHeader className={"border-b h-14 p-0"}>
                 <div className="flex justify-between items-center px-4">
                     <Image
@@ -41,6 +42,7 @@ const AppSidebar = () => {
                         alt="logo white"
                     />
                     <Button
+                        onClick={toggleSidebar}
                         type="button"
                         size={"icon"}
                         className={"md:hidden"}

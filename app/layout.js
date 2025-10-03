@@ -1,14 +1,13 @@
 import { Geist, Geist_Mono, Assistant } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
-import GlobalStoreProvider from "@/components/Application/GlobalStoreProvider";
+import GlobalStoreProvider from "../components/Application/GlobalStoreProvider";
+
 
 const geistSans = Assistant({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
-
-
 
 export const metadata = {
   title: "Create Next App",

@@ -1,15 +1,11 @@
 'use client'
 import BreadCrumb from '@/components/Admin/BreadCrumb'
 import { ADMIN_CATEGORY_SHOW, ADMIN_DASHBOARD } from '@/routes/AdminPanelRoute'
-
 import { use, useEffect, useState } from "react"
-
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import zodSchema from '@/lib/zodSchema'
-
-
 import {
   Form,
   FormControl,
@@ -20,7 +16,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import ButtonLoading from '@/components/Application/LoadingButton'
-
 import { showToast } from "@/lib/showToast"
 import axios from "axios"
 import slugify from 'slugify'

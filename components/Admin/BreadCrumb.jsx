@@ -22,7 +22,7 @@ const BreadCrumb = ({breadcrumbData}) => {
                 :
                 <div key={index}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href={data.href}>{data.label}</BreadcrumbLink>
+                        <BreadcrumbLink className={"font-semibold"} href={data.href}>{data.label}</BreadcrumbLink>
                     </BreadcrumbItem>
                 </div>
               ))}

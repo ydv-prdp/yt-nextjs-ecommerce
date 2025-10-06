@@ -1,15 +1,13 @@
 "use client"
 import BreadCrumb from "@/components/Admin/BreadCrumb"
-import { ADMIN_CATEGORY_ADD, ADMIN_CATEGORY_EDIT, ADMIN_CATEGORY_SHOW, ADMIN_DASHBOARD, ADMIN_TRASH } from "@/routes/AdminPanelRoute"
+import {ADMIN_DASHBOARD, ADMIN_TRASH } from "@/routes/AdminPanelRoute"
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Button } from "@/components/ui/button"
-import { FiPlus } from "react-icons/fi"
-import Link from "next/link"
+
 import DatatableWrapper from "@/components/Admin/DatatableWrapper"
 import { useCallback, useMemo } from "react"
 import { columnConfig } from "@/lib/helper"
-import { DT_CATEGORY_COLUMN } from "@/lib/column"
-import EditAction from "@/components/Admin/EditAction"
+import { DT_CATEGORY_COLUMN, DT_PRODUCT_COLUMN } from "@/lib/column"
+
 import DeleteAction from "@/components/Admin/DeleteAction"
 import { useSearchParams } from "next/navigation"
 const breadcrumbData = [
@@ -25,6 +23,13 @@ const TRASH_CONFIG = {
     fetchUrl:'/api/category',
     exportUrl:'/api/category/export',
     deleteUrl:'/api/category/delete'
+  },
+    product: {
+    title:'Product Trash',
+    columns:DT_PRODUCT_COLUMN,
+    fetchUrl:'/api/product',
+    exportUrl:'/api/product/export',
+    deleteUrl:'/api/product/delete'
   }
 }
 const TrashCategory = () => {

@@ -19,3 +19,9 @@ export const ADMIN_PRODUCT_EDIT=(id)=>id ? `/admin/product/edit/${id}` : ''
 export const ADMIN_PRODUCT_VARIANT_ADD= '/admin/productvariant/add'
 export const ADMIN_PRODUCT_VARIANT_SHOW= '/admin/productvariant'
 export const ADMIN_PRODUCT_VARIANT_EDIT=(id)=>id ? `/admin/productvariant/edit/${id}` : ''
+
+
+//coupon routes
+export const ADMIN_COUPON_ADD= '/admin/coupon/add'
+export const ADMIN_COUPON_SHOW= '/admin/coupon'
+export const ADMIN_COUPON_EDIT=(id)=>id ? `/admin/coupon/edit/${id}` : ''

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import DatatableWrapper from "@/components/Admin/DatatableWrapper"
 import { useCallback, useMemo } from "react"
 import { columnConfig } from "@/lib/helper"
-import { DT_CATEGORY_COLUMN, DT_COUPON_COLUMN, DT_PRODUCT_COLUMN, DT_PRODUCT_VARIANT_COLUMN } from "@/lib/column"
+import { DT_CATEGORY_COLUMN, DT_COUPON_COLUMN, DT_CUSTOMERS_COLUMN, DT_PRODUCT_COLUMN, DT_PRODUCT_VARIANT_COLUMN, DT_REVIEWS_COLUMN } from "@/lib/column"
 
 import DeleteAction from "@/components/Admin/DeleteAction"
 import { useSearchParams } from "next/navigation"
@@ -45,6 +45,20 @@ const TRASH_CONFIG = {
     fetchUrl:'/api/coupon',
     exportUrl:'/api/coupon/export',
     deleteUrl:'/api/coupon/delete'
+  },
+  customers: {
+    title:'Customers Trash',
+    columns:DT_CUSTOMERS_COLUMN,
+    fetchUrl:'/api/customers',
+    exportUrl:'/api/customers/export',
+    deleteUrl:'/api/customers/delete'
+  },
+    review: {
+    title:'Review Trash',
+    columns:DT_REVIEWS_COLUMN,
+    fetchUrl:'/api/review',
+    exportUrl:'/api/review/export',
+    deleteUrl:'/api/review/delete'
   }
 }
 const TrashCategory = () => {

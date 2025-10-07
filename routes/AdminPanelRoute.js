@@ -25,3 +25,17 @@ export const ADMIN_PRODUCT_VARIANT_EDIT=(id)=>id ? `/admin/productvariant/edit/$
 export const ADMIN_COUPON_ADD= '/admin/coupon/add'
 export const ADMIN_COUPON_SHOW= '/admin/coupon'
 export const ADMIN_COUPON_EDIT=(id)=>id ? `/admin/coupon/edit/${id}` : ''
+
+
+
+
+
+//coupon routes
+export const ADMIN_CUSTOMERS_SHOW= '/admin/customers'
+
+
+
+
+
+//review routes
+export const ADMIN_REVIEWS_SHOW= '/admin/review'

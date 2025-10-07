@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import DatatableWrapper from "@/components/Admin/DatatableWrapper"
 import { useCallback, useMemo } from "react"
 import { columnConfig } from "@/lib/helper"
-import { DT_CATEGORY_COLUMN, DT_PRODUCT_COLUMN } from "@/lib/column"
+import { DT_CATEGORY_COLUMN, DT_PRODUCT_COLUMN, DT_PRODUCT_VARIANT_COLUMN } from "@/lib/column"
 
 import DeleteAction from "@/components/Admin/DeleteAction"
 import { useSearchParams } from "next/navigation"
@@ -30,6 +30,14 @@ const TRASH_CONFIG = {
     fetchUrl:'/api/product',
     exportUrl:'/api/product/export',
     deleteUrl:'/api/product/delete'
+  }
+  ,
+    "productvariant": {
+    title:'Product Variant Trash',
+    columns:DT_PRODUCT_VARIANT_COLUMN,
+    fetchUrl:'/api/productvariant',
+    exportUrl:'/api/productvariant/export',
+    deleteUrl:'/api/productvariant/delete'
   }
 }
 const TrashCategory = () => {

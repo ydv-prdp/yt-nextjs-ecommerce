@@ -13,3 +13,9 @@ export const ADMIN_TRASH='/admin/trash'
 export const ADMIN_PRODUCT_ADD= '/admin/product/add'
 export const ADMIN_PRODUCT_SHOW= '/admin/product'
 export const ADMIN_PRODUCT_EDIT=(id)=>id ? `/admin/product/edit/${id}` : ''
+
+
+//product variant routes
+export const ADMIN_PRODUCT_VARIANT_ADD= '/admin/productvariant/add'
+export const ADMIN_PRODUCT_VARIANT_SHOW= '/admin/productvariant'
+export const ADMIN_PRODUCT_VARIANT_EDIT=(id)=>id ? `/admin/productvariant/edit/${id}` : ''

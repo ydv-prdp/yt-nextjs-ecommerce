@@ -137,7 +137,7 @@ const EditProduct = ({ params }) => {
         <CardContent className={"pb-5"}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} >
-              <div className="grid md:grid-cols-2 gap-5">
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
                 <FormField
                   control={form.control}
                   name="name"

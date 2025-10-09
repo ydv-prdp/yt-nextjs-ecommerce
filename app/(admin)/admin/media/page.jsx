@@ -94,7 +94,7 @@ const AdminMediaPage = () => {
               {deleteType === 'SD' ? 'Media' : 'Media Trash'}
             </h4>
             <div className='flex items-center gap-5'>
-              {deleteType === 'SD' && <UploadMedia isMultiple={true} queryClient={queryClient}/>}
+              {deleteType === 'SD' && <UploadMedia isMultiple={true} queryClient={queryClient} />}
               <div className='flex gap-3'>
                 {
                   deleteType === 'SD' ?
@@ -161,7 +161,7 @@ const AdminMediaPage = () => {
                 :
                 <>
                   {
-                    data.pages.flatMap(page=>page.mediaData.map(media=>media._id)).length === 0 && 
+                    data.pages.flatMap(page => page.mediaData.map(media => media._id)).length === 0 &&
                     <div className='text-center'>No data found.</div>
                   }
                   <div className='grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-2 mb-5'>
@@ -183,12 +183,25 @@ const AdminMediaPage = () => {
                         </React.Fragment>
                       ))
                     }
+
                   </div>
+
+                  {
+                    hasNextPage ?
+                      <div className="flex justify-center py-5">
+                        <ButtonLoading
+                          type={"button"}
+                          loading={isFetching}
+                          text="Load More"
+                          onClick={() => fetchNextPage()}
+                        />
+                      </div>
+                      :
+                      <p className="text-center py-5  dark:text-white text-black">
+                        Nothing more to load.
+                      </p>
+                  }
                 </>
-          }
-          {
-            hasNextPage && 
-            <ButtonLoading type={"button"} className={"cursor-pointer"} loading={isFetching} onClick={()=>fetchNextPage()} text={"Load More"}/>
           }
         </CardContent>
       </Card>

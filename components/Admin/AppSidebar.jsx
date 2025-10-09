@@ -14,7 +14,6 @@ import {
 import Image from "next/image"
 import logoBlack from '@/public/assets/images/logo-black.png'
 import logoWhite from '@/public/assets/images/logo-white.png'
-import { LucideChevronRight } from "lucide-react"
 import {IoMdClose} from "react-icons/io"
 import { Button } from "../ui/button"
 import { adminAppSidebarMenu } from "@/lib/adminSidebarMenu"

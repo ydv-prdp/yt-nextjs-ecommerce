@@ -7,6 +7,7 @@ import loading from '@/public/assets/images/loading.svg'
 import React, { useState } from "react"
 import ModalMediaBlock from "./ModalMediaBlock"
 import { showToast } from "@/lib/showToast"
+import ButtonLoading from "../Application/LoadingButton"
 
 
 const ModalMedia = ({ open, setOpen, selectedMedia, setSelectedMedia, isMultiple }) => {
@@ -37,12 +38,13 @@ const ModalMedia = ({ open, setOpen, selectedMedia, setSelectedMedia, isMultiple
         setOpen(false)
     }
     const handleSelect = () => {
-        if(selectedMedia.length<=0){
+        if (selectedMedia.length <= 0) {
             return showToast('error', 'Please select a media')
         }
         setPreviouslySelected(selectedMedia)
         setOpen(false)
     }
+    console.log(hasNextPage)
     return (
         <Dialog
             open={open}
@@ -55,9 +57,9 @@ const ModalMedia = ({ open, setOpen, selectedMedia, setSelectedMedia, isMultiple
                 <DialogDescription className={"hidden"}>
                 </DialogDescription>
 
-                <div className="h-[90vh] bg-white p-3 rounded shadow">
+                <div className="h-[90vh] bg-white dark:bg-card p-3 rounded shadow">
                     <DialogHeader className={"h-8 border-b"} >
-                        <DialogTitle className={"text-black"}>Media Selection</DialogTitle>
+                        <DialogTitle className={"text-black dark:text-white"}>Media Selection</DialogTitle>
                     </DialogHeader>
                     <div className="h-[calc(100%-80px)] overflow-auto py-2]">
                         {
@@ -78,25 +80,44 @@ const ModalMedia = ({ open, setOpen, selectedMedia, setSelectedMedia, isMultiple
                                         </span>
                                     </div>
                                     :
-                                    <div className="grid lg:grid-cols-6 grid-cols-3 gap-2">
+                                    <>
+                                        <div className="grid lg:grid-cols-6 grid-cols-3 gap-2">
+                                            {
+                                                data?.pages?.map((page, index) => (
+                                                    <React.Fragment key={index}>
+                                                        {
+                                                            page?.mediaData?.map((media) => (
+                                                                <ModalMediaBlock
+                                                                    key={media._id}
+                                                                    media={media}
+                                                                    selectedMedia={selectedMedia}
+                                                                    setSelectedMedia={setSelectedMedia}
+                                                                    isMultiple={isMultiple}
+                                                                />
+                                                            ))
+                                                        }
+                                                    </React.Fragment>
+                                                ))
+                                            }
+                                        </div>
+
                                         {
-                                            data?.pages?.map((page, index) => (
-                                                <React.Fragment key={index}>
-                                                    {
-                                                        page?.mediaData?.map((media) => (
-                                                           <ModalMediaBlock
-                                                                key={media._id}
-                                                                media={media}
-                                                                selectedMedia={selectedMedia}
-                                                                setSelectedMedia={setSelectedMedia}
-                                                                isMultiple={isMultiple}
-                                                           />
-                                                        ))
-                                                    }
-                                                </React.Fragment>
-                                            ))
+                                            hasNextPage ?
+                                                <div className="flex justify-center py-5">
+                                                    <ButtonLoading
+                                                        type={"button"}
+                                                        loading={isFetching}
+                                                        text="Load More"
+                                                        onClick={() => fetchNextPage()}
+                                                    />
+                                                </div>
+                                                :
+                                                <p className="text-center py-5  dark:text-white text-black">
+                                                    Nothing more to load.
+                                                </p>
                                         }
-                                    </div>
+                                    </>
+
                         }
                     </div>
 
